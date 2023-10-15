@@ -14,7 +14,7 @@ const StoreItem: FC<StoreItemProps> = ({ id, name, price, imgUrl }) => {
   return (
     <Card>
       <Card.Img variant='top' src={imgUrl} alt='' className='card-img' />
-      <Card.Body className='d-flex flxe-column'>
+      <Card.Body className='d-flex flex-column'>
         <Card.Title className='d-flex justify-content-between align-items-baseline mb-4'>
           <span className='fs-2'>{name}</span>
           <span className='ms-2 text-muted'>{formatCurrency(price)}</span>
