@@ -35,7 +35,9 @@ const Navbar = () => {
             />
           </svg>
         </Button>
-        <div className='cart-total'>3</div>
+        <div className='cart-total rounded-circle bg-danger d-flex justify-content-center align-items-center'>
+          3
+        </div>
       </Container>
     </NavbarBs>
   );
