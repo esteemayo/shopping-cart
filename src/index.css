@@ -1,0 +1,9 @@
+.btnCartTotal {
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+}
+
+.cartTotal {
+  position: absolute;
+}
