@@ -27,7 +27,7 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
 
   const increaseCartQuantity = (id: number) => {
     setCart((currItems) => {
-      if (currItems.find((cartItem) => cartItem.id === null)) {
+      if (currItems.find((cartItem) => cartItem.id === id) === undefined) {
         return [...currItems, { id, quantity: 1 }];
       } else {
         currItems.map((cartItem) =>
