@@ -1,9 +1,9 @@
-.btnCartTotal {
+.btn-cart-total {
   width: 3rem;
   height: 3rem;
   position: relative;
 }
 
-.cartTotal {
+.cart-total {
   position: absolute;
 }

@@ -17,9 +17,8 @@ const Navbar = () => {
           </Nav.Link>
         </Nav>
         <Button
-          style={{ width: '3rem', height: '3rem' }}
           variant='outline-primary'
-          className='rounded-circle'
+          className='rounded-circle btn-cart-total'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -36,6 +35,7 @@ const Navbar = () => {
             />
           </svg>
         </Button>
+        <div className='cart-total'>3</div>
       </Container>
     </NavbarBs>
   );
