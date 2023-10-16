@@ -17,6 +17,7 @@ interface CartItem {
 }
 
 interface CartContextProps {
+  isOpen: boolean;
   openCart(): void;
   closeCart(): void;
   getItemQuantity(id: number): number;
@@ -40,6 +41,10 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
 
   const openCart = useCallback(() => {
     setIsOpen(true);
+  }, []);
+
+  const closeCart = useCallback(() => {
+    setIsOpen(false);
   }, []);
 
   const getItemQuantity = (id: number): number => {
@@ -84,12 +89,14 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
+        isOpen,
         cartQuantity,
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
         openCart,
+        closeCart,
       }}
     >
       {children}
