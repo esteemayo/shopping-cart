@@ -48,9 +48,12 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
     setIsOpen(false);
   }, []);
 
-  const getItemQuantity = (id: number): number => {
-    return cart.find((cartItem) => cartItem.id === id)?.quantity || 0;
-  };
+  const getItemQuantity = useCallback(
+    (id: number): number => {
+      return cart.find((cartItem) => cartItem.id === id)?.quantity || 0;
+    },
+    [cart]
+  );
 
   const increaseCartQuantity = useCallback(
     (id: number) => {
