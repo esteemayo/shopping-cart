@@ -28,3 +28,7 @@
   display: block;
   object-fit: cover;
 }
+
+.quantity {
+  font-size: 0.65rem;
+}
