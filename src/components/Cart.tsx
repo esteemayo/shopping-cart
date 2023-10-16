@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { Offcanvas, Stack } from 'react-bootstrap';
 
 import { useCart } from '../context/CartContext';
@@ -7,8 +7,12 @@ import { formatCurrency } from '../utils/formatCurrency';
 import CartItem from './CartItem';
 import storeItems from '../data/item.json';
 
-const Cart = () => {
-  const { isOpen, cart, closeCart } = useCart();
+interface CartProps {
+  isOpen: boolean;
+}
+
+const Cart: FC<CartProps> = ({ isOpen }) => {
+  const { cart, closeCart } = useCart();
 
   const totalPrice = useMemo(() => {
     const { total } = cart.reduce(
