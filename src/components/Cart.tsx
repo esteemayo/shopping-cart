@@ -32,7 +32,7 @@ const Cart = () => {
       <Offcanvas.Body>
         <Stack gap={3}>
           {cart.map((item) => {
-            return <CartItem key={item.id} {...item} />;
+            return <CartItem key={item.id} {...item} store={storeItems} />;
           })}
           <div className='ms-auto fw-bold fs-5'>
             Total: {formatCurrency(totalPrice)}
