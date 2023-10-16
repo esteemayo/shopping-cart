@@ -6,6 +6,8 @@ import {
   useContext,
   useState,
 } from 'react';
+
+import Cart from '../components/Cart';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface CartProviderProps {
@@ -18,7 +20,6 @@ interface CartItem {
 }
 
 interface CartContextProps {
-  isOpen: boolean;
   openCart(): void;
   closeCart(): void;
   getItemQuantity(id: number): number;
@@ -102,7 +103,6 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        isOpen,
         cartQuantity,
         getItemQuantity,
         increaseCartQuantity,
@@ -113,6 +113,7 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
       }}
     >
       {children}
+      <Cart isOpen={isOpen} />
     </CartContext.Provider>
   );
 };
