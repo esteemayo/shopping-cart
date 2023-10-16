@@ -1,4 +1,7 @@
 import { FC } from 'react';
+import { Stack } from 'react-bootstrap';
+
+import storeItems from '../data/item.json';
 import { useCart } from '../context/CartContext';
 
 interface CartItemProps {
@@ -8,7 +11,17 @@ interface CartItemProps {
 
 const CartItem: FC<CartItemProps> = ({ id, quantity }) => {
   const { removeFromCart } = useCart();
-  return <div>CartItem</div>;
+  const item = storeItems.find((item) => item.id === id);
+
+  if (!item) {
+    return null;
+  }
+
+  return (
+    <Stack>
+      <img src={item.imgUrl} alt='' className='cart-img' />
+    </Stack>
+  );
 };
 
 export default CartItem;

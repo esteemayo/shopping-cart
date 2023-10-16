@@ -21,3 +21,10 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.cart-img {
+  width: 125px;
+  height: 75px;
+  display: block;
+  object-fit: cover;
+}
