@@ -52,39 +52,48 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
     return cart.find((cartItem) => cartItem.id === id)?.quantity || 0;
   };
 
-  const increaseCartQuantity = useCallback((id: number) => {
-    setCart((currItems) => {
-      if (currItems.find((cartItem) => cartItem.id === id) === undefined) {
-        return [...currItems, { id, quantity: 1 }];
-      } else {
-        return currItems.map((cartItem) =>
-          cartItem.id === id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      }
-    });
-  }, []);
+  const increaseCartQuantity = useCallback(
+    (id: number) => {
+      setCart((currItems) => {
+        if (currItems.find((cartItem) => cartItem.id === id) === undefined) {
+          return [...currItems, { id, quantity: 1 }];
+        } else {
+          return currItems.map((cartItem) =>
+            cartItem.id === id
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          );
+        }
+      });
+    },
+    [setCart]
+  );
 
-  const decreaseCartQuantity = useCallback((id: number) => {
-    setCart((currItems) => {
-      if (currItems.find((cartItem) => cartItem.id === id)?.quantity === 1) {
+  const decreaseCartQuantity = useCallback(
+    (id: number) => {
+      setCart((currItems) => {
+        if (currItems.find((cartItem) => cartItem.id === id)?.quantity === 1) {
+          return currItems.filter((cartItem) => cartItem.id !== id);
+        } else {
+          return currItems.map((cartItem) =>
+            cartItem.id === id
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem
+          );
+        }
+      });
+    },
+    [setCart]
+  );
+
+  const removeFromCart = useCallback(
+    (id: number) => {
+      setCart((currItems) => {
         return currItems.filter((cartItem) => cartItem.id !== id);
-      } else {
-        return currItems.map((cartItem) =>
-          cartItem.id === id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        );
-      }
-    });
-  }, []);
-
-  const removeFromCart = useCallback((id: number) => {
-    setCart((currItems) => {
-      return currItems.filter((cartItem) => cartItem.id !== id);
-    });
-  }, []);
+      });
+    },
+    [setCart]
+  );
 
   return (
     <CartContext.Provider
