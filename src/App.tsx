@@ -6,14 +6,12 @@ import Home from './pages/Home';
 import Store from './pages/Store';
 
 import Layout from './components/Layout';
-import Cart from './components/Cart';
 import Navbar from './components/Navbar';
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Cart />
       <Container className='mb-4'>
         <Routes>
           <Route path='/' element={<Layout />}>
