@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Offcanvas, Stack } from 'react-bootstrap';
 
 import { useCart } from '../context/CartContext';
@@ -5,7 +6,6 @@ import { formatCurrency } from '../utils/formatCurrency';
 
 import CartItem from './CartItem';
 import storeItems from '../data/item.json';
-import { useMemo } from 'react';
 
 const Cart = () => {
   const { isOpen, cart, closeCart } = useCart();
