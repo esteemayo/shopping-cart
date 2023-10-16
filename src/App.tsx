@@ -7,11 +7,13 @@ import Store from './pages/Store';
 
 import Layout from './components/Layout';
 import Navbar from './components/Navbar';
+import Cart from './components/Cart';
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <Cart />
       <Container className='mb-4'>
         <Routes>
           <Route path='/' element={<Layout />}>
