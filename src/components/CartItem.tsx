@@ -1,18 +1,25 @@
 import { FC } from 'react';
 import { Button, Stack } from 'react-bootstrap';
 
-import storeItems from '../data/item.json';
-import { formatCurrency } from '../utils/formatCurrency';
 import { useCart } from '../context/CartContext';
+import { formatCurrency } from '../utils/formatCurrency';
+
+type StoreItemValues = {
+  readonly id: number;
+  name: string;
+  price: number;
+  imgUrl: string;
+};
 
 interface CartItemProps {
   readonly id: number;
   quantity: number;
+  store: StoreItemValues[];
 }
 
-const CartItem: FC<CartItemProps> = ({ id, quantity }) => {
+const CartItem: FC<CartItemProps> = ({ id, quantity, store }) => {
   const { removeFromCart } = useCart();
-  const item = storeItems.find((item) => item.id === id);
+  const item = store.find((item) => item.id === id);
 
   if (!item) {
     return null;
