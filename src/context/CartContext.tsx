@@ -30,6 +30,7 @@ interface CartContextProps {
 const CartContext = createContext({} as CartContextProps);
 
 const CartProvider: FC<CartProviderProps> = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const cartQuantity = cart.reduce(
