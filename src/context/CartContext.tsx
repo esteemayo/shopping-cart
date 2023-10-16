@@ -1,4 +1,11 @@
-import { FC, ReactNode, createContext, useContext, useState } from 'react';
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from 'react';
 
 interface CartProviderProps {
   children: ReactNode;
@@ -10,10 +17,14 @@ interface CartItem {
 }
 
 interface CartContextProps {
+  openCart(): void;
+  closeCart(): void;
   getItemQuantity(id: number): number;
   increaseCartQuantity(id: number): void;
   decreaseCartQuantity(id: number): void;
   removeFromCart(id: number): void;
+  cartQuantity: number;
+  cart: CartItem[];
 }
 
 const CartContext = createContext({} as CartContextProps);
@@ -21,11 +32,16 @@ const CartContext = createContext({} as CartContextProps);
 const CartProvider: FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  const cartQuantity = cart.reduce(
+    (cartTotal, cartItem) => (cartTotal += cartItem.quantity),
+    0
+  );
+
   const getItemQuantity = (id: number): number => {
     return cart.find((cartItem) => cartItem.id === id)?.quantity || 0;
   };
 
-  const increaseCartQuantity = (id: number) => {
+  const increaseCartQuantity = useCallback((id: number) => {
     setCart((currItems) => {
       if (currItems.find((cartItem) => cartItem.id === id) === undefined) {
         return [...currItems, { id, quantity: 1 }];
@@ -37,9 +53,9 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
         );
       }
     });
-  };
+  }, []);
 
-  const decreaseCartQuantity = (id: number) => {
+  const decreaseCartQuantity = useCallback((id: number) => {
     setCart((currItems) => {
       if (currItems.find((cartItem) => cartItem.id === id)?.quantity === 1) {
         return currItems.filter((cartItem) => cartItem.id !== id);
@@ -51,17 +67,19 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
         );
       }
     });
-  };
+  }, []);
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = useCallback((id: number) => {
     setCart((currItems) => {
       return currItems.filter((cartItem) => cartItem.id !== id);
     });
-  };
+  }, []);
 
   return (
     <CartContext.Provider
       value={{
+        cart,
+        cartQuantity,
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
