@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { Button, Card } from 'react-bootstrap';
 
 import { useCart } from '../context/CartContext';
@@ -18,7 +18,10 @@ const StoreItem: FC<StoreItemProps> = ({ id, name, price, imgUrl }) => {
     decreaseCartQuantity,
     removeFromCart,
   } = useCart();
-  const quantity = getItemQuantity(id);
+
+  const quantity = useMemo(() => {
+    return getItemQuantity(id);
+  }, [getItemQuantity, id]);
 
   return (
     <Card className='h-100'>
