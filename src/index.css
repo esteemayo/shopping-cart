@@ -29,6 +29,10 @@
   object-fit: cover;
 }
 
-.quantity {
+.cart-quantity {
   font-size: 0.65rem;
+}
+
+.cart-price {
+  font-size: 0.75rem;
 }
