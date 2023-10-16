@@ -6,8 +6,8 @@ import Home from './pages/Home';
 import Store from './pages/Store';
 
 import Layout from './components/Layout';
-import Navbar from './components/Navbar';
 import Cart from './components/Cart';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
